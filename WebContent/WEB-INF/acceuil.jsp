@@ -5,9 +5,18 @@
 <title>IntractionMots</title>
 </head>
 <body>
-	<p><c:out value="Bonjour !" /></p>
-	<br>
+
+	<form method="post">
+		<label for="terme">Entrez un terme : </label>
+        <input type="text" name="terme" id="terme" />
+        <input id="buttonValider" type="submit" />
+	</form>
 	
+	<c:if test="${ empty listeTR }" var="variable">
+    <p>Terme non valide</p>
+	</c:if>
+	
+	<p id="chargement"></p>
 	<c:forEach var="current" items="${listeTR}" >
 
     <p>${current}</p>
