@@ -4,6 +4,7 @@ public class Terme {
 
 	private int id;
 	private String nom;
+	private int impor;
 	
 	
 	
@@ -13,6 +14,29 @@ public class Terme {
 		this.nom = nom;
 	}
 	
+	
+	
+	public Terme(int id, String nom, int impor) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.impor = impor;
+	}
+
+
+
+	public int getImpor() {
+		return impor;
+	}
+
+
+
+	public void setImpor(int impor) {
+		this.impor = impor;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

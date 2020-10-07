@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>IntractionMots</title>
+	<meta charset="ISO-8859-1">
+	<link href="http://localhost:8080/InteractionMots/resources/css/acceuil.css" rel="stylesheet">
+	<title>IntractionMots</title>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
     <p>Terme non valide</p>
 	</c:if>
 	
-	<p id="chargement"></p>
+	<p id="chargement" class="chargement"></p>
 	<c:forEach var="current" items="${listeTR}" >
 
     <p>${current}</p>
