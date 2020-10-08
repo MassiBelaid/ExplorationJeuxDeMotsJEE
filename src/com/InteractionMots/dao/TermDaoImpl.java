@@ -24,13 +24,16 @@ public class TermDaoImpl implements TermeDAO{
 			connection = daoFactory.getConnection();
 			//insert into terme VALUES (10,"terme",0);
 			preparedStatement = connection.prepareStatement("INSERT INTO terme VALUES (?,?,?);");
-			
+
 			preparedStatement.setInt(1, terme.getId());
 			preparedStatement.setString(2,terme.getNom());
 			preparedStatement.setInt(3, terme.getImpor());
 			
+			preparedStatement.executeUpdate();
+			
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.err.println("Terme "+terme+" Erreur d'ajout.");
 		}
 		
 	}
@@ -56,7 +59,7 @@ public class TermDaoImpl implements TermeDAO{
 			}
 			
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return termes;
@@ -76,7 +79,7 @@ public class TermDaoImpl implements TermeDAO{
 			
 			connection = daoFactory.getConnection();
 			statement = connection.createStatement();
-			String requete = "SELECT * FROM terme WHERE nom = "+nom+" AND importe = 1 ; ";
+			String requete = "SELECT * FROM terme WHERE nom = '"+nom+"' AND importe = 1 ; ";
 			resultSet = statement.executeQuery(requete);
 			
 			while (resultSet.next()) {

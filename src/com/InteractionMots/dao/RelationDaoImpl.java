@@ -36,8 +36,10 @@ public class RelationDaoImpl implements RelationDAO{
 			preparedStatement.setString(2,relation.getT2().getNom());
 			preparedStatement.setInt(3, relation.getPoids());
 			
+			preparedStatement.executeUpdate();
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.err.println("Relation "+relation+" Erreur d'ajout.");
 		}
 	}
 
@@ -54,7 +56,7 @@ public class RelationDaoImpl implements RelationDAO{
 			
 			connection = daoFactory.getConnection();
 			statement = connection.createStatement();
-			String requete = "SELECT * FROM relation WHERE nomT1 = "+nomTerme+" ;";
+			String requete = "SELECT * FROM relation WHERE nomT1 = '"+nomTerme+"' ;";
 			resultSet = statement.executeQuery(requete);
 			
 			while (resultSet.next()) {
@@ -62,7 +64,8 @@ public class RelationDaoImpl implements RelationDAO{
 			}
 			
 		}catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.err.println("Relation pour le terme  "+nomTerme+" Erreur d'ajout.");
 		}
 		
 		return relations;

@@ -178,7 +178,7 @@ public class Extraction {
 		ArrayList<String> listStringTerme = new ArrayList<String>();
 		if(termeDao.existTerme(nomTermeRecherche)) {
 			for(Relation relation : relationDao.lister(nomTermeRecherche)) {
-				listStringTerme.add(relation.getNomTerme1());
+				listStringTerme.add(relation.getNomTerme2());
 			}
 			return listStringTerme;
 		}else {
