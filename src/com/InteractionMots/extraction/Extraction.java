@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.*;
 import com.InteractionMots.beans.Relation;
 import com.InteractionMots.beans.Terme;
+import com.InteractionMots.dao.DaoFactory;
+import com.InteractionMots.dao.RelationDAO;
+import com.InteractionMots.dao.TermeDAO;
 
 import Comparator.ComparatorRelation;
 
@@ -18,6 +21,15 @@ public class Extraction {
 	public static final int POIDS_RELATION_MINIMUM = 5;
 	public static final int POIDS_TERME_MINIMUM = 50;
 	
+	private DaoFactory daoFactory;
+	private RelationDAO relationDao ;
+	private TermeDAO termeDao ;
+	
+	public Extraction(DaoFactory daoFactory) {
+		this.daoFactory = daoFactory;
+		relationDao = this.daoFactory.getRelationDao();
+		termeDao = this.daoFactory.getTermeDao();
+	}
 	
 	//Cpntienderont les termes/relations pour la bdd
 	private List<Relation> relationsToSave = new ArrayList<Relation>();
@@ -151,6 +163,28 @@ public class Extraction {
 	
 	
 	private void saveInBase(List<Relation> listRelations, List<Terme> listTermes) {
+		
+		for(Relation relation : listRelations) {
+			relationDao.ajouter(relation);
+		}
+		
+		for(Terme terme : listTermes) {
+			termeDao.ajouter(terme);
+		}
+	}
+	
+	
+	public ArrayList<String> getData(String nomTermeRecherche) throws IOException{
+		ArrayList<String> listStringTerme = new ArrayList<String>();
+		if(termeDao.existTerme(nomTermeRecherche)) {
+			for(Relation relation : relationDao.lister(nomTermeRecherche)) {
+				listStringTerme.add(relation.getNomTerme1());
+			}
+			return listStringTerme;
+		}else {
+			return extract(nomTermeRecherche);
+		}
+		
 		
 	}
 	

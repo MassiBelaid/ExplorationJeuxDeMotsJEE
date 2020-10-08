@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.InteractionMots.dao.DaoFactory;
 import com.InteractionMots.extraction.Extraction;
 
 import java.io.BufferedReader;
@@ -18,11 +19,14 @@ import java.util.List;
 @WebServlet("/Acceuil")
 public class Acceuil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Extraction extraction;
        
-    public Acceuil() {
-        super();
-        // TODO Auto-generated constructor stub
+
+    public void init() throws ServletException {
+        this.extraction = new Extraction(DaoFactory.getInstance());
     }
+    
+    
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -42,8 +46,7 @@ public class Acceuil extends HttpServlet {
 		String terme = request.getParameter("terme");
 		System.out.println("Le terme : "+terme);
 		if(!(terme==null)) {
-			Extraction ext = new Extraction();
-			ArrayList<String> listeTR = ext.extract(terme);
+			ArrayList<String> listeTR = this.extraction.getData(terme);
 			request.setAttribute("listeTR", listeTR);
 		}
 		this.getServletContext().getRequestDispatcher("/WEB-INF/acceuil.jsp").forward(request, response);

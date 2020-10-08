@@ -23,6 +23,7 @@ public class DaoFactory {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
     	
     	DaoFactory instance = new DaoFactory(
@@ -33,5 +34,14 @@ public class DaoFactory {
     
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
+    }
+    
+    
+    public TermeDAO getTermeDao() {
+    	return new TermDaoImpl(this);
+    }
+    
+    public RelationDAO getRelationDao() {
+    	return new RelationDaoImpl(this);
     }
 }

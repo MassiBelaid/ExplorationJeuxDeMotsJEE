@@ -6,7 +6,19 @@ public class Relation {
 	private int poids;
 	private int idT1;
 	private int idT2;
+	private String nomTerme1;
+	private String nomTerme2;
 	
+	
+	
+	public Relation(String nomTerme1, String nomTerme2, int poids) {
+		this.poids = poids;
+		this.nomTerme1 = nomTerme1;
+		this.nomTerme2 = nomTerme2;
+	}
+
+
+
 	public Relation(Terme t1, Terme t2, int poids) {
 		this.t1 = t1;
 		this.t2 = t2;
@@ -65,6 +77,30 @@ public class Relation {
 	}
 	public void setPoids(int poid) {
 		this.poids = poids;
+	}
+
+
+
+	public String getNomTerme1() {
+		return nomTerme1;
+	}
+
+
+
+	public void setNomTerme1(String nomTerme1) {
+		this.nomTerme1 = nomTerme1;
+	}
+
+
+
+	public String getNomTerme2() {
+		return nomTerme2;
+	}
+
+
+
+	public void setNomTerme2(String nomTerme2) {
+		this.nomTerme2 = nomTerme2;
 	}
 	
 	

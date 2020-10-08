@@ -6,5 +6,5 @@ import com.InteractionMots.beans.Relation;
 
 public interface RelationDAO {
 void ajouter(Relation relation);
-List<Relation> lister();
+List<Relation> lister(String nomTerme);
 }
